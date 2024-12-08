@@ -8,40 +8,27 @@
             <input id="usernameInput" type="text" placeholder="Username" />
             <input id="passwordInput" type="password" placeholder="Password" />
             <button id="loginButton">Login</button>
+            <button id="registerButton">Register</button>
         </div>
-        <div id="log"></div>
 
         <script>
-            const log = document.getElementById('log');
+            const { loginWithCredentials, register }  = require('./client');
             const usernameInput = document.getElementById('usernameInput');
             const passwordInput = document.getElementById('passwordInput');
             const loginButton = document.getElementById('loginButton');
+            const registerButton = document.getElementById('registerButton');
 
-            const socket = new WebSocket('ws://localhost:8080');
-
-            socket.addEventListener('open', () => {
-                log.innerHTML += '<p>Connected to the server.</p>';
-            });
-
-            socket.addEventListener('message', (event) => {
-                log.innerHTML += `<p>Server: ${event.data}</p>`;
-            });
-
-            socket.addEventListener('close', () => {
-                log.innerHTML += '<p>Connection closed.</p>';
-            });
-
-            socket.addEventListener('error', (error) => {
-                log.innerHTML += `<p>Error: ${error.message}</p>`;
-            });
 
             loginButton.addEventListener('click', () => {
                 const username = usernameInput.value;
                 const password = passwordInput.value;
-                socket.send(JSON.stringify({ username, password }));
-                log.innerHTML += `<p>You: ${username} / ${password}</p>`;
-                usernameInput.value = '';
-                passwordInput.value = '';
+                loginWithCredentials(username, password);
+            });
+
+            registerButton.addEventListener('click', () => {
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+                register(username, password);
             });
         </script>
 </html>
