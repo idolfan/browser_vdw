@@ -1,0 +1,24 @@
+Spielideen:
+- Villen des Wahnsinns
+- Cluedo
+- Rundenbasiert
+   -> Mythosphase nicht komplett sichtbar
+- Traitor Ziele
+- Charaktere
+    -> Fähigkeiten
+- Spezielle Items
+- Begrenzte Kommunikation
+- Bewegung in Kästchen
+  -> individuell für Charaktere
+  -> Limit überschreiten ( diese Runde extra Feld laufen, dafür nächste Runde weniger)
+- Aktionspunkte pro Runde
+    -> Ausgebbar für Bewegung, Aktionen, ...
+    -> Ansparbar zu einem gewissen prozentualen Anteil
+    -> Limit für jeweilige Aktionen pro Zug ( nur X Punkte für Bewegung pro Zug.)
+- Rätsel auch ins Spiel integriert ( Dinge rum schieben, Knöpfe drücken, ...)
+Konkrete Itemideen:
+- Hebt Limit für Bewegung pro Zug auf
+- (Cooldown) Lässt durch eine Wand schauen
+- Bewegt etwas ( Charaktere, Items, ...)
+Implementierung:
+- Events, Trigger etc. alles als Objekte -> einfach Speicherbar

@@ -11,13 +11,14 @@
             <button id="registerButton">Register</button>
         </div>
 
+        <script src="client.js"></script>
         <script>
-            const { loginWithCredentials, register }  = require('./client');
             const usernameInput = document.getElementById('usernameInput');
             const passwordInput = document.getElementById('passwordInput');
             const loginButton = document.getElementById('loginButton');
             const registerButton = document.getElementById('registerButton');
-
+            redirectBackTo = '/lobby.html';
+            connect();
 
             loginButton.addEventListener('click', () => {
                 const username = usernameInput.value;

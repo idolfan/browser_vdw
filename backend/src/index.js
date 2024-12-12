@@ -1,6 +1,9 @@
-const { startServer, broadcast } = require('./server');
+const { startServer } = require('./server');
+const { loadUsers } = require('./users');
+const { gameLoop, addPlayer } = require('./game');
 const readline = require('readline');
 const commands = require('./commands');
+const { loadLevel } = require('./level');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -8,6 +11,9 @@ const rl = readline.createInterface({
 });
 
 startServer();
+loadUsers();
+
+gameLoop();
 
 rl.on('line', (input) => {
     if (input.trim()) {

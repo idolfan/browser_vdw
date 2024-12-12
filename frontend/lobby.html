@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <title>Lobby</title>
+</head>
+
+<body>
+    <h1>Lobby</h1>
+    <div>
+        <button id="createGameButton">Create Game</button>
+        <button id="joinGameButton">Join Game</button>
+        <div id="gameList">
+            <h2>Games</h2>
+            <ul id="games"></ul>
+        </div>
+        <div id="inGameLobby" hidden>
+            <div id="gameSettings">
+                <h2>Game Settings</h2>
+                <form id="gameSettingsForm" onsubmit="submitGameSettings(event)">
+                    <label for="gameName">Game Name</label>
+                    <input type="text" id="gameName" name="gameName" required>
+                    <label for="level">Level</label>
+                    <select id="level" name="level"></select>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div id="players">
+                <h2>Players</h2>
+                <ul id="playerList"></ul>
+            </div>
+            <button id="leaveGameButton" onclick="leaveGame()">Leave Game</button>
+        </div>
+    </div>
+
+    <script src="client.js"></script>
+    <script>
+        const createGameButton = document.getElementById('createGameButton');
+        const joinGameButton = document.getElementById('joinGameButton');
+        const logoutButton = document.getElementById('logoutButton');
+        redirectBackTo = '/lobby.html';
+        connect();
+
+        let gameSessionId = null;
+
+        function setGameLobbyVisible(message) {
+
+            gameSessionId = gameSessionId;
+
+            const playerList = document.getElementById('playerList');
+            playerList.innerHTML = '';
+            message.players.forEach(player => {
+                const playerElement = document.createElement('li');
+                playerElement.textContent = player.name;
+                playerList.appendChild(playerElement);
+            });
+
+            const levelSelect = document.getElementById('level');
+            message.levels.forEach(level => {
+                const levelOption = document.createElement('option');
+                levelOption.value = level;
+                levelOption.textContent = level;
+                levelSelect.appendChild(levelOption);
+            });
+
+            document.getElementById('inGameLobby').hidden = false;
+            document.getElementById('gameList').hidden = true;
+
+        }
+
+        function setLobbySelectionVisible() {
+            document.getElementById('inGameLobby').hidden = true;
+            document.getElementById('gameList').hidden = false;
+
+        }
+
+        function submitGameSettings(event) {
+            event.preventDefault();
+            const gameName = document.getElementById('gameName').value;
+            const level = document.getElementById('level').value;
+            const settings = {
+                gameName,
+                level
+            };
+            startGame(settings);
+        }
+
+        createGameButton.addEventListener('click', () => {
+            let settings;
+            createGame(settings);
+        });
+
+        joinGameButton.addEventListener('click', () => {
+            let gameId;
+            joinGame(gameId);
+        });
+
+        /* logoutButton.addEventListener('click', () => {
+            logout();
+        }); */
+    </script>
+</body>
+
+</html>

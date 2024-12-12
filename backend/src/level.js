@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function loadLevel(levelname) {
     try {   
     return require(`../levels/${levelname}.json`);

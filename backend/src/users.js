@@ -1,4 +1,5 @@
 const users = {};
+const fs = require('fs');
 
 function loadUsers() {
     const userFiles = fs.readdirSync('./users');
@@ -14,6 +15,10 @@ function saveUser(userId) {
 }
 
 function createUser(user) {
+    if(!user.id) {
+        console.log('User id is required');
+        return;
+    }
     if(users[user.id]) {
         console.log('User already exists');
         return;
